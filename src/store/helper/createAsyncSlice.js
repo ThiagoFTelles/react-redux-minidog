@@ -34,6 +34,7 @@ const createAsyncSlice = (config) => {
       ...config.reducers,
     },
   });
+
   const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
 
   const asyncAction = (payload) => async (dispatch) => {
@@ -44,7 +45,7 @@ const createAsyncSlice = (config) => {
       const data = await response.json();
       return dispatch(fetchSuccess(data));
     } catch (error) {
-      dispatch(fetchError(error.message));
+      return dispatch(fetchError(error.message));
     }
   };
 
