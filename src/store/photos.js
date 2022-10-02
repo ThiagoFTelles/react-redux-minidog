@@ -1,4 +1,4 @@
-import createAsyncSlice from './helper/crerateAsyncSlice.js';
+import createAsyncSlice from './helper/createAsyncSlice.js';
 
 const photos = createAsyncSlice({
   name: 'photos',
