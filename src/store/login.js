@@ -1,5 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import createAsyncSlice from './helper/crerateAsyncSlice';
+import createAsyncSlice from './helper/createAsyncSlice';
 import getLocalStorage from './helper/getLocalStorage';
 import { removePhotos } from './photos';
 
@@ -62,7 +62,6 @@ const user = createAsyncSlice({
     },
   }),
 });
-
 const reducer = combineReducers({ token: token.reducer, user: user.reducer });
 
 const fetchToken = token.asyncAction;
@@ -77,7 +76,7 @@ export const login = (user) => async (dispatch) => {
   try {
     const { payload } = await dispatch(fetchToken(user));
     if (payload.token !== undefined) await dispatch(fetchUser(payload.token));
-  } catch (error) {}
+  } catch {}
 };
 
 export const autoLogin = () => async (dispatch, getState) => {
